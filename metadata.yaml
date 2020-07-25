@@ -15,5 +15,5 @@
 homepage: "https://www.raptor.digital"
 documentation: "http://support.raptor.digital"
 versions:
-  - sha: e12958ca7b03b720019312dd97d2d121ea25162a
+  - sha: 978c2be8678d3d2b9915d8d4eef823a54f9090f5
     changeNotes: Initial Version
