@@ -77,8 +77,6 @@ const getUrl = require('getUrl');
 const event = readFromDataLayer('event');
 const queryPermission = require('queryPermission');
 const getContainerVersion = require('getContainerVersion');
-const injectScript = require("injectScript");
-const copyFromWindow = require('copyFromWindow');
 const eventTimestamp = getTimestamp();
 const endPoint = data.endPoint;
 const token = data.token;
@@ -100,12 +98,6 @@ function onError(err) { log("error"); log(err); }
 
 // The addEventCallback gets two arguments: container ID and a data object with an array of tags that fired
 addEventCallback((ctid, eventData) => {
-    injectScript("https://cdn-vxygzlqrx3.raptor.digital/raptor/scripts/raptor-montoring-helper-20200619-1.js");
-    // Inject Script to access userAgent variable from window
-    // Copy userAgent varibale from window
-    if (queryPermission('access_globals', 'readwrite', 'raptorNavUserAgent')) {
-        userAgent = copyFromWindow('raptorNavUserAgent');
-    }
     // Filter out tags that have the "exclude" metadata set to true
     const tags = eventData.tags.filter(t => t.include == 'true');
 
@@ -125,7 +117,6 @@ addEventCallback((ctid, eventData) => {
                 tagPrefix + '_nm=' + tag.name +
                 tagPrefix + '_st=' + tag.status +
                 tagPrefix + '_ty=' + tagType +
-                tagPrefix + '_ua=' + userAgent +
                 tagPrefix + '_url=' + url +
                 tagPrefix + '_cv=' + cv.version +
                 tagPrefix + '_envName=' + cv.environmentName +
@@ -244,93 +235,6 @@ ___WEB_PERMISSIONS___
   {
     "instance": {
       "key": {
-        "publicId": "inject_script",
-        "versionId": "1"
-      },
-      "param": [
-        {
-          "key": "urls",
-          "value": {
-            "type": 2,
-            "listItem": [
-              {
-                "type": 1,
-                "string": "https://cdn-vxygzlqrx3.raptor.digital/raptor/scripts/*"
-              }
-            ]
-          }
-        }
-      ]
-    },
-    "clientAnnotations": {
-      "isEditedByUser": true
-    },
-    "isRequired": true
-  },
-  {
-    "instance": {
-      "key": {
-        "publicId": "access_globals",
-        "versionId": "1"
-      },
-      "param": [
-        {
-          "key": "keys",
-          "value": {
-            "type": 2,
-            "listItem": [
-              {
-                "type": 3,
-                "mapKey": [
-                  {
-                    "type": 1,
-                    "string": "key"
-                  },
-                  {
-                    "type": 1,
-                    "string": "read"
-                  },
-                  {
-                    "type": 1,
-                    "string": "write"
-                  },
-                  {
-                    "type": 1,
-                    "string": "execute"
-                  }
-                ],
-                "mapValue": [
-                  {
-                    "type": 1,
-                    "string": "raptorNavUserAgent"
-                  },
-                  {
-                    "type": 8,
-                    "boolean": true
-                  },
-                  {
-                    "type": 8,
-                    "boolean": true
-                  },
-                  {
-                    "type": 8,
-                    "boolean": false
-                  }
-                ]
-              }
-            ]
-          }
-        }
-      ]
-    },
-    "clientAnnotations": {
-      "isEditedByUser": true
-    },
-    "isRequired": true
-  },
-  {
-    "instance": {
-      "key": {
         "publicId": "logging",
         "versionId": "1"
       },
@@ -362,4 +266,6 @@ setup: ''
 
 ___NOTES___
 
-Created on 07/25/2020, 18:00:04
+Created on 06/07/2020, 17:37:04
+
+
