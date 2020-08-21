@@ -15,5 +15,12 @@
 homepage: "https://www.raptor.digital"
 documentation: "http://support.raptor.digital"
 versions:
+  # Latest version
+  - sha: 5f02a788b90ae804f86b04aa24af8937e567874c
+    changeNotes: |2
+      Updated endpoint
+      Removed inject script
+
+  # Older versions
   - sha: 5833f5579b2bdb9957d581d2bada4a0167bf9731
     changeNotes: Initial Version
