@@ -185,7 +185,7 @@ ___WEB_PERMISSIONS___
             "listItem": [
               {
                 "type": 1,
-                "string": "https://tag-streaming-dot-tag-monitoring-282106.ts.r.appspot.com/*"
+                "string": "https://monitoring.raptor.digital/*"
               }
             ]
           }
