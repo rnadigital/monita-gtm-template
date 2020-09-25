@@ -13,7 +13,7 @@
 # limitations under the License.
 
 homepage: "https://getmonita.io"
-documentation: "http://support.raptor.digital"
+documentation: "http://support.getmonita.io"
 versions:
   # Latest version
   - sha: 15c46ec9ee130c4acfed80892c964fd3927e28c0
