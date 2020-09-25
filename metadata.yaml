@@ -12,15 +12,18 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-homepage: "https://www.raptor.digital"
+homepage: "https://getmonita.io"
 documentation: "http://support.raptor.digital"
 versions:
   # Latest version
+  - sha: 15c46ec9ee130c4acfed80892c964fd3927e28c0
+    changeNotes: |1
+      Rebrand to Monita
+
+  # Older versions
   - sha: 66427ae2fe3a946306ae75e83bc3767cf20e4fcc
     changeNotes: |2
       Updated endpoint
       Removed inject script
-
-  # Older versions
   - sha: 5833f5579b2bdb9957d581d2bada4a0167bf9731
     changeNotes: Initial Version
