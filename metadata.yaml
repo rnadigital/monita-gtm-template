@@ -16,11 +16,14 @@ homepage: "https://getmonita.io"
 documentation: "http://support.getmonita.io"
 versions:
   # Latest version
-  - sha: 15c46ec9ee130c4acfed80892c964fd3927e28c0
-    changeNotes: |1
-      Rebrand to Monita
+  - sha: 46b33b4f9aaf2be0f93d37aad021b36c3e5afb20
+    changeNotes: |4
+      Updated the order of the payload to reduce chances of 400 requests for certain containers.
 
   # Older versions
+  - sha: 15c46ec9ee130c4acfed80892c964fd3927e28c0
+    changeNotes: |3
+      Rebrand to Monita
   - sha: 66427ae2fe3a946306ae75e83bc3767cf20e4fcc
     changeNotes: |2
       Updated endpoint
