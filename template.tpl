@@ -1,3 +1,11 @@
+___TERMS_OF_SERVICE___
+
+By creating or modifying this file you agree to Google Tag Manager's Community
+Template Gallery Developer Terms of Service available at
+https://developers.google.com/tag-manager/gallery-tos (or such other URL as
+Google may provide), as modified from time to time.
+
+
 ___INFO___
 
 {
@@ -78,7 +86,6 @@ const endPoint = data.endPoint;
 const token = data.token;
 const url = getUrl();
 const cv = getContainerVersion();
-let userAgent;
 
 // Utility for splitting an array into multiple arrays of given size
 const splitToBatches = (arr) => {
@@ -106,16 +113,30 @@ addEventCallback((ctid, eventData) => {
         tags.forEach((tag) => {
             const tagType = tag.type ? tag.type : 'undefined';
             const tagPrefix = '&tag';
-            log(tag);
+            let status;
+            switch (tag.status) {
+                case 'success':
+                    status = 'success';
+                    break;
+                case 'failure':
+                    status = 'failure';
+                    break;
+                case 'exception':
+                    status = 'exception';
+                    break;
+                case 'timeout':
+                    status = 'timeout';
+                    break;
+            }
             payload +=
                 tagPrefix + '_sc_token=' + token +
-                tagPrefix + '_et=' + tag.executionTime +
                 tagPrefix + '_cv=' + cv.version +
                 tagPrefix + '_envName=' + cv.environmentName +
                 tagPrefix + '_ctid=' + cv.containerId +
+                tagPrefix + '_et=' + tag.executionTime +
                 tagPrefix + '_id=' + tag.id +
                 tagPrefix + '_nm=' + tag.name +
-                tagPrefix + '_st=' + tag.status +
+                tagPrefix + '_st=' + status +
                 tagPrefix + '_ty=' + tagType +
                 tagPrefix + '_url=' + url;
 
@@ -228,6 +249,16 @@ ___WEB_PERMISSIONS___
   {
     "instance": {
       "key": {
+        "publicId": "read_container_data",
+        "versionId": "1"
+      },
+      "param": []
+    },
+    "isRequired": true
+  },
+  {
+    "instance": {
+      "key": {
         "publicId": "logging",
         "versionId": "1"
       },
@@ -243,16 +274,6 @@ ___WEB_PERMISSIONS___
     },
     "clientAnnotations": {
       "isEditedByUser": true
-    },
-    "isRequired": true
-  },
-  {
-    "instance": {
-      "key": {
-        "publicId": "read_container_data",
-        "versionId": "1"
-      },
-      "param": []
     },
     "isRequired": true
   }
