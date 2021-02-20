@@ -17,19 +17,14 @@ documentation: "http://support.getmonita.io"
 versions:
   # Latest version
   - sha: e202aad34808782b69aa8120f13aac5b83a42e57
-    changeNotes: |5
-      Added new tag status fields (exceptions and timeout)
-      
+    changeNotes: |2
+      Added new tag status fields (exceptions and timeout).
   # Older versions
-    - sha: 46b33b4f9aaf2be0f93d37aad021b36c3e5afb20
-    changeNotes:
-      Updated the order of the payload to reduce chances of 400 requests for certain containers.
+  - sha: 46b33b4f9aaf2be0f93d37aad021b36c3e5afb20
+    changeNotes: Updated the order of the payload to reduce chances of 400 requests for certain containers.
   - sha: 15c46ec9ee130c4acfed80892c964fd3927e28c0
-    changeNotes:
-      Rebrand to Monita
+    changeNotes: Rebrand to Monita.
   - sha: 66427ae2fe3a946306ae75e83bc3767cf20e4fcc
-    changeNotes:
-      Updated endpoint
-      Removed inject script
+    changeNotes: Updated endpoint and Removed inject script.
   - sha: 5833f5579b2bdb9957d581d2bada4a0167bf9731
-    changeNotes: Initial Version
+    changeNotes: Initial release.
