@@ -16,10 +16,12 @@ homepage: "https://getmonita.io"
 documentation: "http://support.getmonita.io"
 versions:
   # Latest version
-  - sha: e202aad34808782b69aa8120f13aac5b83a42e57
+  - sha: 8587901ff0a2a33fc7634798615beb09a97e0245
     changeNotes: |2
-      Added new tag status fields (exceptions and timeout).
+      Template is able to Monitor consent state of other tags.
   # Older versions
+  - sha: e202aad34808782b69aa8120f13aac5b83a42e57
+    changeNotes: Added new tag status fields (exceptions and timeout).
   - sha: 46b33b4f9aaf2be0f93d37aad021b36c3e5afb20
     changeNotes: Updated the order of the payload to reduce chances of 400 requests for certain containers.
   - sha: 15c46ec9ee130c4acfed80892c964fd3927e28c0
