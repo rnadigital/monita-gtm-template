@@ -99,11 +99,9 @@ const getContainerVersion = require('getContainerVersion');
 const getUrl = require('getUrl');
 const cv = getContainerVersion();
 const url = getUrl();
-const getTimestamp = require('getTimestamp');
 const copyFromDataLayer = require('copyFromDataLayer');
 const event = copyFromDataLayer('event');
 const uniqueEventId = copyFromDataLayer('gtm.uniqueEventId');
-const CACHE_BUSTER = '?cache=' + getTimestamp();
 const WINDOW_QUEUE_KEY = '_monitaQueue';
 const WINDOW_QUEUE_PROCESS_FUNCTION = '_monitaQueueFunction';
 const WINDOW_LOAD_KEY = '_monitaLoaded';
@@ -136,12 +134,10 @@ if (!isLoaded || isLoaded !== 1) {
   
   /* Script injection */
   const id = encodeUriComponent(data.token);
-  
-  //TODO: in future, we will add the id query string and use some kind of cdn routing/rewrite
-  //const trackingUrl = 'https://storage.googleapis.com/cdn-monita-dev/test.js?id=' + id;
-  
-  //But for now/in dev, we directly put their ID in the path, (and add cache bust timestamp query)
-  const trackingUrl = 'https://storage.googleapis.com/cdn-monita-dev/' + id + '.js' + CACHE_BUSTER;
+  let trackingUrl = 'https://storage.googleapis.com/cdn-monita-dev/' + id + '.js?cv=' + cv.version;
+  //const getTimestamp = require('getTimestamp');
+  //const CACHE_BUSTER = '?cache=' + getTimestamp();
+  //trackingUrl += CACHE_BUSTER
   injectScript(trackingUrl, data.gtmOnSuccess, data.gtmOnFailure);
   
 }
