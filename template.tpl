@@ -134,7 +134,7 @@ if (!isLoaded || isLoaded !== 1) {
   
   /* Script injection */
   const id = encodeUriComponent(data.token);
-  let trackingUrl = 'https://storage.googleapis.com/cdn-monita-dev/' + id + '.js?cv=' + cv.version;
+  let trackingUrl = 'https://cdn-a.raptor.digital/gtm-config/' + id + '.js?cv=' + cv.version;
   //const getTimestamp = require('getTimestamp');
   //const CACHE_BUSTER = '?cache=' + getTimestamp();
   //trackingUrl += CACHE_BUSTER
@@ -162,7 +162,7 @@ ___WEB_PERMISSIONS___
             "listItem": [
               {
                 "type": 1,
-                "string": "https://storage.googleapis.com/cdn-monita-dev/*"
+                "string": "https://cdn-a.raptor.digital/gtm-config/*"
               }
             ]
           }
