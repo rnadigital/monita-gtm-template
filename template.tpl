@@ -101,10 +101,13 @@ const cv = getContainerVersion();
 const url = getUrl();
 const copyFromDataLayer = require('copyFromDataLayer');
 const event = copyFromDataLayer('event');
+const triggers = copyFromDataLayer('gtm.triggers');
 const uniqueEventId = copyFromDataLayer('gtm.uniqueEventId');
 const WINDOW_QUEUE_KEY = '_monitaQueue';
 const WINDOW_QUEUE_PROCESS_FUNCTION = '_monitaQueueFunction';
 const WINDOW_LOAD_KEY = '_monitaLoaded';
+const createQueue = require('createQueue');
+const monitaQueuePush = createQueue(WINDOW_QUEUE_KEY);
 
 /* Debug log */
 const log = require('logToConsole');
@@ -113,16 +116,15 @@ log("[CDN TEMPLATE] | data:", data);
 /* Push data to monita queue */
 addEventCallback((ctid, eventData) => {
   log("[CDN TEMPLATE] | eventData.tags:", eventData.tags);
-  const currentQueueData = copyFromWindow(WINDOW_QUEUE_KEY) || [];
   eventData.tagVariables = data.tagVariables;
   eventData.cv = cv;
   eventData.url = url;
   eventData.event = event;
   eventData.uniqueEventId = uniqueEventId;
+  eventData.triggers = triggers;
   eventData.sessionId = data.sessionId;
   eventData.customerId = data.customerId;
-  currentQueueData.push(eventData);
-  setInWindow(WINDOW_QUEUE_KEY, currentQueueData, true);
+  monitaQueuePush(eventData);
   callInWindow(WINDOW_QUEUE_PROCESS_FUNCTION);
 });
 
@@ -137,7 +139,7 @@ if (!isLoaded || isLoaded !== 1) {
   let trackingUrl = 'https://cdn-a.raptor.digital/gtm-config/' + id + '.js?cv=' + cv.version;
   //const getTimestamp = require('getTimestamp');
   //const CACHE_BUSTER = '?cache=' + getTimestamp();
-  //trackingUrl += CACHE_BUSTER
+  //trackingUrl += CACHE_BUSTER;
   injectScript(trackingUrl, data.gtmOnSuccess, data.gtmOnFailure);
   
 }
@@ -377,6 +379,9 @@ ___WEB_PERMISSIONS___
         }
       ]
     },
+    "clientAnnotations": {
+      "isEditedByUser": true
+    },
     "isRequired": true
   },
   {
@@ -398,6 +403,10 @@ ___WEB_PERMISSIONS___
               {
                 "type": 1,
                 "string": "gtm.uniqueEventId"
+              },
+              {
+                "type": 1,
+                "string": "gtm.triggers"
               }
             ]
           }
