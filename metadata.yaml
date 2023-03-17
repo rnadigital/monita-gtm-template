@@ -16,9 +16,11 @@ homepage: "https://getmonita.io"
 documentation: "http://support.getmonita.io"
 versions:
   # Latest version
+  - sha: 911da294ebd437584f8dd3f059441826c89d4bcb
+    changeNotes: Switch using custom template API queue function, add triggers, fetch gtm.triggers from datalayer.
+  # Older versions
   - sha: 0c9a3629cd6167c848bf30b15a3e27d2a3a5ba9d
     changeNotes: CDN url updated
-  # Older versions
   - sha: ae75648cd0e72fa30819995682e6e621ae061404
     changeNotes: Update template for gtm data monitoring. Data will now be captured by tagVariables param and processing is handled by an injected script.
   - sha: 8587901ff0a2a33fc7634798615beb09a97e0245
